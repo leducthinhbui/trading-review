@@ -1,53 +1,46 @@
 id,date,market,code,name,theme,shares,sell_price,profit,profit_pct,held_days,chg_1m_pct,chg_3m_pct,max_3m_pct,min_3m_pct,market_3m_pct,price_3m,window_end,window_complete,missed_or_avoided,verdict
-S01,2023-03-30,ASX,PLS,Pilbara Minerals,Lithium,281.0,3.99,109.17,10.8,9,6.3,22.6,26.6,-11.3,1.1,4.89,2023-06-30,yes,252.9,Sold early
-S02,2023-04-19,ASX,PLS,Pilbara Minerals,Lithium,166.0,4.1,80.52,13.5,6,21.7,25.1,26.3,-5.1,-0.6,5.13,2023-07-19,yes,170.78,Sold early
-S03,2023-10-13,ASX,PLS,Pilbara Minerals,Lithium,225.0,4.21,-48.74,-4.9,25,-17.3,-11.2,-2.4,-23.3,6.3,3.74,2024-01-12,yes,-105.75,Good sell
-S04,2024-05-03,ASX,PLS,Pilbara Minerals,Lithium,266.0,4.17,105.06,10.5,228,-8.4,-31.4,0.7,-33.1,4.1,2.86,2024-08-02,yes,-348.46,Good sell
-S05,2024-05-21,US,INTC,Intel,AI chips and hardware,23.0,31.94,31.72,4.5,11,-2.7,-33.0,9.2,-40.5,5.5,21.41,2024-08-21,yes,-242.19,Good sell
-S06,2024-08-06,ASX,PLS,Pilbara Minerals,Lithium,288.0,2.81,-28.74,-3.4,15,-14.4,3.4,17.6,-16.2,6.8,2.91,2024-11-06,yes,27.36,About even
-S07,2024-08-08,ASX,PLS,Pilbara Minerals,Lithium,400.0,2.99,31.26,2.7,17,-19.4,-0.3,10.7,-21.1,8.0,2.98,2024-11-08,yes,-4.0,About even
-S08,2025-05-02,US,NVDA,NVIDIA,AI chips and hardware,5.0,114.99,51.42,9.9,28,19.5,51.1,55.9,-1.3,9.7,173.72,2025-08-01,yes,293.63,Sold early
-S09,2025-05-08,US,MFG,Mizuho Financial,Financials,10.0,4.95,-6.42,-12.1,34,12.6,26.5,26.5,3.1,12.8,6.26,2025-08-08,yes,13.12,Sold early
-S10,2025-05-14,US,GS,Goldman Sachs,Financials,1.0,599.99,-1.99,-0.3,70,2.3,24.5,24.5,-1.1,9.8,747.2,2025-08-14,yes,147.21,Sold early
-S11,2025-06-13,US,GLD,SPDR Gold ETF,Gold and bitcoin,4.0,317.22,82.35,7.0,28,-2.5,5.7,5.7,-5.1,10.1,335.42,2025-09-12,yes,72.81,Sold early
-S12,2025-07-22,US,GOOGL,Alphabet,Big tech,4.0,190.0,73.12,10.7,47,8.5,32.5,35.0,-0.5,6.2,251.69,2025-10-22,yes,246.77,Sold early
-S13,2025-09-03,US,GLD,SPDR Gold ETF,Gold and bitcoin,1.0,327.81,15.79,5.1,68,9.1,18.0,23.0,-0.3,6.2,386.88,2025-12-03,yes,59.07,Sold early
-S14,2025-09-17,US,AAPL,Apple,Big tech,12.0,240.0,428.84,17.5,118,5.1,13.3,19.2,-0.9,1.9,271.84,2025-12-17,yes,382.09,Sold early
-S15,2025-09-19,US,PLTR,Palantir,Big tech,10.0,180.0,243.99,15.7,49,-1.0,7.4,15.1,-14.0,2.5,193.38,2025-12-19,yes,133.81,Sold early
-S16,2025-10-08,ASX,PLS,Pilbara Minerals,Lithium,550.0,2.65,131.5,9.9,37,10.6,81.1,82.6,-1.9,-2.5,4.8,2026-01-08,yes,1182.5,Sold early
-S17,2025-12-15,ASX,XRO,Xero,Financials,9.0,111.57,-396.87,-28.4,68,-7.5,-27.8,3.6,-35.6,-0.2,80.53,2026-03-13,yes,-279.36,Good sell
-S18,2025-12-20,US,PLTR,Palantir,Big tech,5.0,193.68,126.32,15.1,18,-13.0,-22.2,0.3,-33.5,-4.7,150.68,2026-03-20,yes,-214.99,Good sell
-S19,2026-01-07,ASX,MQG,Macquarie Group,Financials,10.0,206.24,140.2,7.3,50,0.8,2.9,8.1,-7.1,0.4,212.19,2026-04-07,yes,59.5,About even
-S20,2026-04-10,US,AMD,AMD,AI chips and hardware,3.0,239.99,54.97,8.3,129,89.7,132.5,142.1,2.8,11.1,557.89,2026-07-10,yes,953.69,Sold early
-S21,2026-04-13,US,JEPQ,JPMorgan Nasdaq Income ETF,Income ETF,2.0,57.36,-4.28,-3.7,18,4.4,3.9,7.1,1.1,9.2,59.59,2026-07-13,yes,4.46,About even
-S22,2026-04-13,US,NVDA,NVIDIA,AI chips and hardware,18.0,185.8,98.32,3.0,137,21.5,9.5,26.9,3.6,9.2,203.53,2026-07-13,yes,319.22,Sold early
-S23,2026-04-13,US,GOOGL,Alphabet,Big tech,8.0,314.44,39.55,1.6,132,28.0,12.1,28.0,5.7,9.2,352.51,2026-07-13,yes,304.54,Sold early
-S24,2026-04-18,US,GOOGL,Alphabet,Big tech,10.0,340.99,82.72,2.5,3,16.4,1.7,18.1,-2.6,4.7,346.77,2026-07-17,yes,57.78,About even
-S25,2026-04-18,US,NVDA,NVIDIA,AI chips and hardware,10.0,201.33,51.95,2.7,3,10.4,0.7,17.1,-4.4,4.7,202.81,2026-07-17,yes,14.75,About even
-S26,2026-04-18,US,AAPL,Apple,Big tech,15.0,270.18,172.11,4.4,3,10.2,23.5,23.5,-1.5,4.7,333.74,2026-07-17,yes,953.34,Sold early
-S27,2026-06-19,US,MSFT,Microsoft,Big tech,11.0,374.91,-601.26,-12.7,17,5.0,31.7,37.0,-5.9,2.0,493.78,2026-09-18,yes,1307.55,Sold early
-S28,2026-07-16,US,META,Meta Platforms,Big tech,2.0,688.32,158.64,13.1,44,-14.3,3.1,13.0,-21.7,1.7,709.33,2026-10-16,yes,42.02,About even
-S29,2026-07-16,US,JPM,JPMorgan Chase,Financials,3.0,347.12,147.06,16.5,44,4.5,-2.1,5.2,-5.1,1.7,339.72,2026-10-16,yes,-22.2,About even
-S30,2026-07-16,US,META,Meta Platforms,Big tech,4.0,679.98,317.27,13.2,44,-13.3,4.3,14.4,-20.7,1.7,709.33,2026-10-16,yes,117.39,About even
-S31,2026-07-27,US,JPM,JPMorgan Chase,Financials,3.0,355.92,173.46,19.5,55,-0.5,-5.7,2.6,-7.4,4.1,335.79,2026-10-27,yes,-60.39,Good sell
-S32,2026-07-29,US,JPM,JPMorgan Chase,Financials,4.0,358.29,241.76,20.3,57,-0.2,-4.1,1.9,-8.0,5.5,343.58,2026-10-29,yes,-58.84,About even
-S33,2026-08-06,US,AXP,American Express,Financials,5.0,350.17,179.5,11.4,65,-6.9,-8.3,-1.7,-13.8,-4.3,320.99,2026-11-06,yes,-145.9,Good sell
-S34,2026-08-06,US,META,Meta Platforms,Big tech,5.0,591.99,140.14,5.0,56,4.2,3.1,31.4,-8.2,-4.3,610.15,2026-11-06,yes,90.82,About even
-S35,2026-08-10,US,BRK.B,Berkshire Hathaway,Financials,5.0,531.99,297.54,12.6,69,-4.7,8.1,8.9,-6.8,-2.6,575.25,2026-11-09,no,216.31,Sold early
-S36,2026-08-11,US,GOOGL,Alphabet,Big tech,6.0,349.69,172.15,9.0,19,-3.2,-17.6,1.5,-20.2,-2.3,288.15,2026-11-09,no,-369.25,Good sell
-S37,2026-08-11,US,XOM,Exxon Mobil,Energy and power,10.0,160.0,112.76,7.6,22,3.7,3.0,17.0,-2.2,-2.3,164.73,2026-11-09,no,47.34,About even
-S38,2026-08-18,US,META,Meta Platforms,Big tech,9.0,564.48,-4.85,-0.1,15,17.9,13.6,37.8,-3.3,-1.9,641.37,2026-11-09,no,691.98,Sold early
-S39,2026-08-19,US,DVN,Devon Energy,Energy and power,30.0,47.95,130.16,10.0,23,1.4,-11.6,8.8,-12.0,-2.1,42.4,2026-11-09,no,-166.46,Good sell
-S40,2026-08-19,US,MU,Micron,AI chips and hardware,2.0,956.62,-15.77,-0.8,0,6.2,-23.4,14.7,-31.4,-2.1,733.15,2026-11-09,no,-446.93,Good sell
-S41,2026-08-19,US,SNDK,Sandisk,AI chips and hardware,4.0,1672.02,-63.38,-0.9,0,7.2,-47.0,12.9,-51.8,-2.1,886.51,2026-11-09,no,-3142.02,Good sell
-S42,2026-08-21,US,GLD,SPDR Gold ETF,Gold and bitcoin,10.0,421.03,-6.06,-0.1,0,-5.4,-9.9,1.7,-15.5,-1.7,379.53,2026-11-09,no,-414.96,Good sell
-S43,2026-08-21,US,GLD,SPDR Gold ETF,Gold and bitcoin,8.0,420.99,-5.74,-0.2,0,-5.4,-9.8,1.7,-15.5,-1.7,379.53,2026-11-09,no,-331.68,Good sell
-S44,2026-08-21,US,VST,Vistra,Energy and power,10.0,139.41,-111.93,-7.4,35,1.0,-3.9,19.6,-19.0,-1.7,133.92,2026-11-09,no,-54.87,About even
-S45,2026-08-21,US,AVGO,Broadcom,AI chips and hardware,10.0,363.63,-17.91,-0.5,1,-0.3,-12.1,3.5,-19.8,-1.7,319.48,2026-11-09,no,-441.49,Good sell
-S46,2026-08-26,US,BRK.B,Berkshire Hathaway,Financials,6.0,504.79,12.71,0.4,6,0.1,14.0,14.7,-1.4,-1.7,575.25,2026-11-09,no,422.77,Sold early
-S47,2026-08-26,US,TSM,TSMC,AI chips and hardware,5.0,419.59,24.45,1.2,6,7.4,-7.4,15.8,-15.8,-1.7,388.62,2026-11-09,no,-154.85,Good sell
-S48,2026-09-04,US,MSTR,MicroStrategy,Gold and bitcoin,62.0,143.15,1217.07,15.9,14,11.8,-12.3,17.7,-12.3,-2.3,125.59,2026-11-09,no,-1088.53,Good sell
-S49,2026-09-17,US,CRDO,Credo Technology,AI chips and hardware,10.0,159.65,-141.62,-8.2,14,6.3,-16.8,38.3,-29.6,-1.3,132.89,2026-11-09,no,-267.6,Good sell
-S50,2026-09-17,US,CRDO,Credo Technology,AI chips and hardware,30.0,158.95,0.27,0.0,14,6.8,-16.4,38.9,-29.3,-1.3,132.89,2026-11-09,no,-781.89,Good sell
-S51,2026-09-17,US,META,Meta Platforms,Big tech,4.0,679.65,497.97,22.5,28,4.4,-5.6,14.4,-11.0,-1.3,641.37,2026-11-09,no,-153.13,Good sell
-S52,2026-11-06,US,AXP,American Express,Financials,10.0,326.2,91.43,2.9,50,-0.6,-0.6,-0.6,-0.6,2.4,324.31,2026-11-09,no,-18.93,About even
+S01,2025-05-02,US,NVDA,NVIDIA,AI chips and hardware,5.0,114.99,51.42,9.9,28,19.5,51.1,55.9,-1.3,9.7,173.72,2025-08-01,yes,293.63,Sold early
+S02,2025-05-08,US,MFG,Mizuho Financial,Financials,10.0,4.95,-6.42,-12.1,34,12.6,26.5,26.5,3.1,12.8,6.26,2025-08-08,yes,13.12,Sold early
+S03,2025-05-14,US,GS,Goldman Sachs,Financials,1.0,599.99,-1.99,-0.3,70,2.3,24.5,24.5,-1.1,9.8,747.2,2025-08-14,yes,147.21,Sold early
+S04,2025-06-13,US,GLD,SPDR Gold ETF,Gold and bitcoin,4.0,317.22,82.35,7.0,28,-2.5,5.7,5.7,-5.1,10.1,335.42,2025-09-12,yes,72.81,Sold early
+S05,2025-07-22,US,GOOGL,Alphabet,Big tech,4.0,190.0,73.12,10.7,47,8.5,32.5,35.0,-0.5,6.2,251.69,2025-10-22,yes,246.77,Sold early
+S06,2025-09-03,US,GLD,SPDR Gold ETF,Gold and bitcoin,1.0,327.81,15.79,5.1,68,9.1,18.0,23.0,-0.3,6.2,386.88,2025-12-03,yes,59.07,Sold early
+S07,2025-09-17,US,AAPL,Apple,Big tech,12.0,240.0,428.84,17.5,118,5.1,13.3,19.2,-0.9,1.9,271.84,2025-12-17,yes,382.09,Sold early
+S08,2025-09-19,US,PLTR,Palantir,Big tech,10.0,180.0,243.99,15.7,49,-1.0,7.4,15.1,-14.0,2.5,193.38,2025-12-19,yes,133.81,Sold early
+S09,2025-10-08,ASX,PLS,Pilbara Minerals,Lithium,550.0,2.65,131.5,9.9,37,10.6,81.1,82.6,-1.9,-2.5,4.8,2026-01-08,yes,1182.5,Sold early
+S10,2025-12-15,ASX,XRO,Xero,Financials,9.0,111.57,-396.87,-28.4,68,-7.5,-27.8,3.6,-35.6,-0.2,80.53,2026-03-13,yes,-279.36,Good sell
+S11,2025-12-20,US,PLTR,Palantir,Big tech,5.0,193.68,126.32,15.1,18,-13.0,-22.2,0.3,-33.5,-4.7,150.68,2026-03-20,yes,-214.99,Good sell
+S12,2026-01-07,ASX,MQG,Macquarie Group,Financials,10.0,206.24,140.2,7.3,50,0.8,2.9,8.1,-7.1,0.4,212.19,2026-04-07,yes,59.5,About even
+S13,2026-04-10,US,AMD,AMD,AI chips and hardware,3.0,239.99,54.97,8.3,129,89.7,132.5,142.1,2.8,11.1,557.89,2026-07-10,yes,953.69,Sold early
+S14,2026-04-13,US,JEPQ,JPMorgan Nasdaq Income ETF,Income ETF,2.0,57.36,-4.28,-3.7,18,4.4,3.9,7.1,1.1,9.2,59.59,2026-07-13,yes,4.46,About even
+S15,2026-04-13,US,NVDA,NVIDIA,AI chips and hardware,18.0,185.8,98.32,3.0,137,21.5,9.5,26.9,3.6,9.2,203.53,2026-07-13,yes,319.22,Sold early
+S16,2026-04-13,US,GOOGL,Alphabet,Big tech,8.0,314.44,39.55,1.6,132,28.0,12.1,28.0,5.7,9.2,352.51,2026-07-13,yes,304.54,Sold early
+S17,2026-04-18,US,GOOGL,Alphabet,Big tech,10.0,340.99,82.72,2.5,3,16.4,1.7,18.1,-2.6,4.7,346.77,2026-07-17,yes,57.78,About even
+S18,2026-04-18,US,NVDA,NVIDIA,AI chips and hardware,10.0,201.33,51.95,2.7,3,10.4,0.7,17.1,-4.4,4.7,202.81,2026-07-17,yes,14.75,About even
+S19,2026-04-18,US,AAPL,Apple,Big tech,15.0,270.18,172.11,4.4,3,10.2,23.5,23.5,-1.5,4.7,333.74,2026-07-17,yes,953.34,Sold early
+S20,2026-06-19,US,MSFT,Microsoft,Big tech,11.0,374.91,-601.26,-12.7,17,5.0,31.7,37.0,-5.9,2.0,493.78,2026-09-18,yes,1307.55,Sold early
+S21,2026-07-16,US,META,Meta Platforms,Big tech,2.0,688.32,158.64,13.1,44,-14.3,3.1,13.0,-21.7,1.7,709.33,2026-10-16,yes,42.02,About even
+S22,2026-07-16,US,JPM,JPMorgan Chase,Financials,3.0,347.12,147.06,16.5,44,4.5,-2.1,5.2,-5.1,1.7,339.72,2026-10-16,yes,-22.2,About even
+S23,2026-07-16,US,META,Meta Platforms,Big tech,4.0,679.98,317.27,13.2,44,-13.3,4.3,14.4,-20.7,1.7,709.33,2026-10-16,yes,117.39,About even
+S24,2026-07-27,US,JPM,JPMorgan Chase,Financials,3.0,355.92,173.46,19.5,55,-0.5,-5.7,2.6,-7.4,4.1,335.79,2026-10-27,yes,-60.39,Good sell
+S25,2026-07-29,US,JPM,JPMorgan Chase,Financials,4.0,358.29,241.76,20.3,57,-0.2,-4.1,1.9,-8.0,5.5,343.58,2026-10-29,yes,-58.84,About even
+S26,2026-08-06,US,AXP,American Express,Financials,5.0,350.17,179.5,11.4,65,-6.9,-8.3,-1.7,-13.8,-4.3,320.99,2026-11-06,yes,-145.9,Good sell
+S27,2026-08-06,US,META,Meta Platforms,Big tech,5.0,591.99,140.14,5.0,56,4.2,3.1,31.4,-8.2,-4.3,610.15,2026-11-06,yes,90.82,About even
+S28,2026-08-10,US,BRK.B,Berkshire Hathaway,Financials,5.0,531.99,297.54,12.6,69,-4.7,8.1,8.9,-6.8,-2.6,575.25,2026-11-09,no,216.31,Sold early
+S29,2026-08-11,US,GOOGL,Alphabet,Big tech,6.0,349.69,172.15,9.0,19,-3.2,-17.6,1.5,-20.2,-2.3,288.15,2026-11-09,no,-369.25,Good sell
+S30,2026-08-11,US,XOM,Exxon Mobil,Energy and power,10.0,160.0,112.76,7.6,22,3.7,3.0,17.0,-2.2,-2.3,164.73,2026-11-09,no,47.34,About even
+S31,2026-08-18,US,META,Meta Platforms,Big tech,9.0,564.48,-4.85,-0.1,15,17.9,13.6,37.8,-3.3,-1.9,641.37,2026-11-09,no,691.98,Sold early
+S32,2026-08-19,US,DVN,Devon Energy,Energy and power,30.0,47.95,130.16,10.0,23,1.4,-11.6,8.8,-12.0,-2.1,42.4,2026-11-09,no,-166.46,Good sell
+S33,2026-08-19,US,MU,Micron,AI chips and hardware,2.0,956.62,-15.77,-0.8,0,6.2,-23.4,14.7,-31.4,-2.1,733.15,2026-11-09,no,-446.93,Good sell
+S34,2026-08-19,US,SNDK,Sandisk,AI chips and hardware,4.0,1672.02,-63.38,-0.9,0,7.2,-47.0,12.9,-51.8,-2.1,886.51,2026-11-09,no,-3142.02,Good sell
+S35,2026-08-21,US,GLD,SPDR Gold ETF,Gold and bitcoin,10.0,421.03,-6.06,-0.1,0,-5.4,-9.9,1.7,-15.5,-1.7,379.53,2026-11-09,no,-414.96,Good sell
+S36,2026-08-21,US,GLD,SPDR Gold ETF,Gold and bitcoin,8.0,420.99,-5.74,-0.2,0,-5.4,-9.8,1.7,-15.5,-1.7,379.53,2026-11-09,no,-331.68,Good sell
+S37,2026-08-21,US,VST,Vistra,Energy and power,10.0,139.41,-111.93,-7.4,35,1.0,-3.9,19.6,-19.0,-1.7,133.92,2026-11-09,no,-54.87,About even
+S38,2026-08-21,US,AVGO,Broadcom,AI chips and hardware,10.0,363.63,-17.91,-0.5,1,-0.3,-12.1,3.5,-19.8,-1.7,319.48,2026-11-09,no,-441.49,Good sell
+S39,2026-08-26,US,BRK.B,Berkshire Hathaway,Financials,6.0,504.79,12.71,0.4,6,0.1,14.0,14.7,-1.4,-1.7,575.25,2026-11-09,no,422.77,Sold early
+S40,2026-08-26,US,TSM,TSMC,AI chips and hardware,5.0,419.59,24.45,1.2,6,7.4,-7.4,15.8,-15.8,-1.7,388.62,2026-11-09,no,-154.85,Good sell
+S41,2026-09-04,US,MSTR,MicroStrategy,Gold and bitcoin,62.0,143.15,1217.07,15.9,14,11.8,-12.3,17.7,-12.3,-2.3,125.59,2026-11-09,no,-1088.53,Good sell
+S42,2026-09-17,US,CRDO,Credo Technology,AI chips and hardware,10.0,159.65,-141.62,-8.2,14,6.3,-16.8,38.3,-29.6,-1.3,132.89,2026-11-09,no,-267.6,Good sell
+S43,2026-09-17,US,CRDO,Credo Technology,AI chips and hardware,30.0,158.95,0.27,0.0,14,6.8,-16.4,38.9,-29.3,-1.3,132.89,2026-11-09,no,-781.89,Good sell
+S44,2026-09-17,US,META,Meta Platforms,Big tech,4.0,679.65,497.97,22.5,28,4.4,-5.6,14.4,-11.0,-1.3,641.37,2026-11-09,no,-153.13,Good sell
+S45,2026-11-06,US,AXP,American Express,Financials,10.0,326.2,91.43,2.9,50,-0.6,-0.6,-0.6,-0.6,2.4,324.31,2026-11-09,no,-18.93,About even

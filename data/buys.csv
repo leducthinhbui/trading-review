@@ -1,11 +1,4 @@
 date,market,code,name,shares,buy_price,drop_before_pct,dip_buy,chg_3m_pct,market_3m_pct,window_complete
-2023-03-21,ASX,PLS,Pilbara Minerals,143.0,3.54,-21.9,yes,42.7,5.2,yes
-2023-03-22,ASX,PLS,Pilbara Minerals,138.0,3.6,-20.5,yes,37.8,2.6,yes
-2023-04-13,ASX,PLS,Pilbara Minerals,166.0,3.58,-10.3,yes,42.2,-1.1,yes
-2023-09-18,ASX,PLS,Pilbara Minerals,226.0,4.4,-13.9,yes,-9.8,2.7,yes
-2024-04-03,ASX,PLS,Pilbara Minerals,265.0,3.75,-15.0,yes,-20.0,-0.5,yes
-2024-05-10,US,INTC,Intel,23.0,30.3,-16.6,yes,-35.0,2.3,yes
-2024-07-22,ASX,PLS,Pilbara Minerals,688.0,2.9,-11.0,yes,-4.1,3.5,yes
 2025-03-05,US,GS,Goldman Sachs,1.0,595.98,-11.3,yes,1.7,1.7,yes
 2025-04-04,US,MFG,Mizuho Financial,10.0,4.99,-17.4,yes,12.8,23.8,yes
 2025-04-04,US,NVDA,NVIDIA,5.0,103.51,-14.9,yes,53.9,23.8,yes
