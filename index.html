@@ -1,0 +1,375 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Trading Review</title>
+<meta name="description" content="Daniel Bui's share trades since 2023, tested against what each stock did in the three months after every sale.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+  /* Layout: a trading journal, one column of findings with charts set inside ruled panels. */
+  :root {
+    --bg: #f6f7f4; --panel: #ffffff; --ink: #18211d; --muted: #5d6963; --line: #dfe4df;
+    --accent: #1f6f5c; --good: #1f7a4d; --early: #b4562c; --even: #7b8580; --market: #6b7fa8;
+    --display: "Fraunces", Georgia, serif; --body: "IBM Plex Sans", system-ui, sans-serif; --mono: "IBM Plex Mono", ui-monospace, monospace;
+    color-scheme: light;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) { --bg: #111614; --panel: #18201c; --ink: #e8eee9; --muted: #9aa8a1; --line: #2b3631; --accent: #4fb596; --good: #4cc08a; --early: #e2875c; --even: #8e9a94; --market: #93a6d4; color-scheme: dark; }
+  }
+  :root[data-theme="dark"] { --bg: #111614; --panel: #18201c; --ink: #e8eee9; --muted: #9aa8a1; --line: #2b3631; --accent: #4fb596; --good: #4cc08a; --early: #e2875c; --even: #8e9a94; --market: #93a6d4; color-scheme: dark; }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--bg); color: var(--ink); font: 15px/1.55 var(--body); }
+  .wrap { max-width: 68rem; margin: 0 auto; padding-block: 2.5rem 4rem; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); display: grid; gap: 2.5rem; }
+  header { display: grid; gap: .6rem; }
+  .eyebrow { font: 500 .78rem var(--mono); letter-spacing: .08em; text-transform: uppercase; color: var(--muted); }
+  h1 { font: 600 clamp(1.9rem, 4.5vw, 2.8rem)/1.1 var(--display); margin: 0; text-wrap: balance; }
+  h2 { font: 600 1.35rem/1.25 var(--display); margin: 0; text-wrap: balance; }
+  h3 { font: 600 .95rem var(--body); margin: 0; }
+  p { margin: 0; max-width: 46rem; }
+  .lede { color: var(--muted); font-size: 1.05rem; }
+  .lede b, .note b, .prose b { color: var(--ink); }
+  .tiles { display: grid; gap: 1px; grid-template-columns: repeat(auto-fit, minmax(min(100%, 12rem), 1fr)); background: var(--line); border: 1px solid var(--line); }
+  .tile { background: var(--panel); padding: 1rem 1.1rem; display: grid; gap: .2rem; }
+  .tile-label { font-size: .8rem; color: var(--muted); }
+  .tile-value { font: 500 1.7rem/1.1 var(--mono); font-variant-numeric: tabular-nums; }
+  .tile-sub { font-size: .78rem; color: var(--muted); }
+  section { display: grid; gap: 1rem; }
+  .panel { background: var(--panel); border: 1px solid var(--line); padding: 1.1rem 1.2rem; display: grid; gap: .8rem; min-width: 0; }
+  .grid2 { display: grid; gap: 1rem; grid-template-columns: repeat(auto-fit, minmax(min(100%, 22rem), 1fr)); }
+  .note { font-size: .85rem; color: var(--muted); }
+  .chart { position: relative; min-height: 120px; }
+  .chart svg { display: block; overflow: visible; }
+  .chart text { font: 12px var(--body); fill: var(--muted); }
+  .chart .strong { fill: var(--ink); }
+  .legend { display: flex; flex-wrap: wrap; gap: .4rem 1rem; font-size: .8rem; color: var(--muted); }
+  .legend span { display: inline-flex; align-items: center; gap: .35rem; }
+  .dot { width: .7rem; height: .7rem; border-radius: 50%; display: inline-block; }
+  .dot.hollow { background: transparent !important; border: 2px solid var(--muted); }
+  .tip { position: absolute; pointer-events: none; background: var(--panel); border: 1px solid var(--line); box-shadow: 0 4px 16px rgba(0,0,0,.12); padding: .45rem .6rem; font-size: .78rem; max-width: 17rem; z-index: 3; }
+  .tip b { display: block; margin-bottom: .1rem; }
+  .filters { display: flex; flex-wrap: wrap; gap: .4rem; }
+  .filters button { font: 500 .8rem var(--body); padding: .3rem .7rem; border: 1px solid var(--line); background: var(--panel); color: var(--ink); cursor: pointer; }
+  .filters button[aria-pressed="true"] { background: var(--ink); color: var(--bg); border-color: var(--ink); }
+  .filters button:focus-visible, th button:focus-visible, a:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+  .table-wrap { overflow-x: auto; max-height: 30rem; overflow-y: auto; border-top: 1px solid var(--line); }
+  table { width: 100%; border-collapse: collapse; font-size: .82rem; }
+  th { position: sticky; top: 0; background: var(--panel); text-align: left; font-weight: 500; color: var(--muted); padding: .45rem .5rem; border-bottom: 1px solid var(--line); white-space: nowrap; }
+  th button { all: unset; cursor: pointer; }
+  td { padding: .45rem .5rem; border-bottom: 1px solid var(--line); white-space: nowrap; }
+  td.num, th.num { text-align: right; font-family: var(--mono); font-variant-numeric: tabular-nums; }
+  .pos { color: var(--good); } .neg { color: var(--early); }
+  .chip { display: inline-block; padding: 0 .45rem; border: 1px solid currentColor; font-size: .74rem; font-weight: 500; }
+  .chip.good { color: var(--good); } .chip.early { color: var(--early); } .chip.even { color: var(--even); }
+  .partial { color: var(--muted); font-size: .72rem; margin-left: .3rem; }
+  .news { display: grid; gap: 1rem; grid-template-columns: repeat(auto-fit, minmax(min(100%, 20rem), 1fr)); }
+  .news article { background: var(--panel); border: 1px solid var(--line); border-top: 3px solid var(--accent); padding: 1rem 1.1rem; display: grid; gap: .45rem; align-content: start; }
+  .news .meta { font: 500 .75rem var(--mono); color: var(--muted); letter-spacing: .03em; }
+  .news .mine { font-size: .85rem; border-left: 2px solid var(--line); padding-left: .6rem; color: var(--muted); }
+  .news a { color: var(--ink); font-size: .82rem; }
+  .prose { display: grid; gap: .6rem; }
+  .prose ul { margin: 0; padding-left: 1.2rem; display: grid; gap: .45rem; max-width: 48rem; }
+  details { font-size: .85rem; color: var(--muted); }
+  details summary { cursor: pointer; color: var(--ink); }
+  details dl { display: grid; gap: .3rem; margin: .7rem 0 0; }
+  details dt { color: var(--ink); font-weight: 500; } details dd { margin: 0 0 .4rem; }
+  footer { font-size: .8rem; color: var(--muted); border-top: 1px solid var(--line); padding-top: 1rem; }
+  footer a { color: var(--ink); }
+  @media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <span class="eyebrow">Daniel Bui · Trading review · data to <span id="asof">—</span></span>
+    <h1>Did I sell at the right time?</h1>
+    <p class="lede" id="lede">Loading the trade record…</p>
+  </header>
+
+  <div class="tiles" aria-label="Headline figures">
+    <div class="tile"><span class="tile-label">Trades since <span id="t-first">—</span></span><span class="tile-value" id="t-trades">—</span><span class="tile-sub"><span id="t-stocks">—</span> stocks and ETFs, US and ASX</span></div>
+    <div class="tile"><span class="tile-label">All-time return</span><span class="tile-value" id="t-stake">—</span><span class="tile-sub">as shown in the Stake app</span></div>
+    <div class="tile"><span class="tile-label">US sales closed at a profit</span><span class="tile-value" id="t-win">—</span><span class="tile-sub"><span id="t-winn">—</span> of US sales</span></div>
+    <div class="tile"><span class="tile-label">Realised US profit</span><span class="tile-value" id="t-real">—</span><span class="tile-sub">after brokerage</span></div>
+  </div>
+
+  <section id="timing">
+    <h2>What each stock did in the 3 months after I sold</h2>
+    <p class="note">Each dot is one sale. Above the line, the stock kept rising after I sold; below it, I got out before a fall. Hollow dots are recent sales with less than 3 months of data so far.</p>
+    <div class="panel">
+      <div class="legend">
+        <span><i class="dot" style="background:var(--good)"></i>Good sell: fell 5% or more</span>
+        <span><i class="dot" style="background:var(--early)"></i>Sold early: rose 5% or more</span>
+        <span><i class="dot" style="background:var(--even)"></i>About even</span>
+        <span><i class="dot hollow"></i>Window not finished</span>
+      </div>
+      <div class="chart" id="scatter" style="min-height:340px"></div>
+    </div>
+    <div class="grid2">
+      <div class="panel">
+        <h3>Verdicts, sales with a full 3 months of data</h3>
+        <div class="chart" id="verdicts"></div>
+        <p class="note">On average a stock I sold rose <b id="v-after">—</b> over the next 3 months, against <b id="v-market">—</b> for the market over the same windows.</p>
+      </div>
+      <div class="panel">
+        <h3>Did buying after a drop work? Average change 3 months after buying</h3>
+        <div class="chart" id="dips"></div>
+        <p class="note">A dip buy is a purchase made at least 5% below the stock's highest close of the previous 20 trading days. <b id="d-n">—</b> of <b id="d-total">—</b> buys with a full 3 months of data were dip buys.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="sales">
+    <h2>Every sale</h2>
+    <div class="panel">
+      <div class="filters" role="group" aria-label="Filter sales">
+        <button type="button" data-filter="all" aria-pressed="true">All</button>
+        <button type="button" data-filter="Good sell" aria-pressed="false">Good sells</button>
+        <button type="button" data-filter="Sold early" aria-pressed="false">Sold early</button>
+        <button type="button" data-filter="About even" aria-pressed="false">About even</button>
+        <button type="button" data-filter="partial" aria-pressed="false">Window not finished</button>
+      </div>
+      <div class="table-wrap">
+        <table id="sales-table">
+          <thead><tr>
+            <th><button type="button" data-sort="date">Date</button></th>
+            <th><button type="button" data-sort="code">Stock</button></th>
+            <th class="num"><button type="button" data-sort="sell_price">Sold at</button></th>
+            <th class="num"><button type="button" data-sort="profit_pct">My profit</button></th>
+            <th class="num"><button type="button" data-sort="held_days">Held (days)</button></th>
+            <th class="num"><button type="button" data-sort="chg_3m_pct">3 months later</button></th>
+            <th class="num"><button type="button" data-sort="market_3m_pct">Market</button></th>
+            <th>Verdict</th>
+          </tr></thead>
+          <tbody></tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <section id="holdings">
+    <h2>What I hold now, and why</h2>
+    <p class="note">I hold NVIDIA and Sandisk for AI computing and storage demand and buy more after price drops, with CVS Health as a defensive, dividend-paying balance.</p>
+    <div class="panel">
+      <div class="table-wrap" style="max-height:none">
+        <table id="holdings-table">
+          <thead><tr><th>Stock</th><th>Theme</th><th class="num">Shares</th><th class="num">Average cost</th><th class="num">Last close</th><th class="num">Return</th></tr></thead>
+          <tbody></tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <section id="news">
+    <h2>The news behind the biggest moves</h2>
+    <div class="news" id="news-cards"></div>
+  </section>
+
+  <section id="lessons">
+    <h2>What the record says about my trading</h2>
+    <div class="prose">
+      <ul>
+        <li><b>My recent exits were well timed.</b> I sold memory, chip, bitcoin and gold positions in August and September 2026, before the October sell-off in AI and chip stocks.</li>
+        <li><b>Earlier, I sold winners too soon.</b> In the 2025–mid 2026 rally I often took small profits and missed large moves, most clearly AMD and NVIDIA. Microsoft hurt twice: I sold at a loss near its low, six weeks before strong cloud earnings.</li>
+        <li><b>Buying after a drop beat the market but not my other buys.</b> Some dip buys kept falling, such as Intel, Xero and Sandisk, so a lower price alone is not a reason to buy.</li>
+        <li><b>What to do differently:</b> keep part of a winning position instead of selling all of it, and check whether the business has changed before treating a fall as a chance to buy.</li>
+      </ul>
+    </div>
+  </section>
+
+  <details id="method">
+    <summary>Method and sources</summary>
+    <dl>
+      <dt>Trades</dt><dd>My full trade history from Stake: 93 US trades since May 2024 and 18 ASX trades since March 2023. Profit uses first-in, first-out cost and includes the A$/US$3 brokerage on each trade.</dd>
+      <dt>Prices</dt><dd>Daily closing prices from Yahoo Finance. "3 months later" compares my sale price with the close three calendar months after the sale; the market is the S&amp;P 500 (SPY) for US stocks and the ASX 200 for Australian stocks.</dd>
+      <dt>Verdicts</dt><dd>Good sell: the stock was 5% or more lower three months later. Sold early: 5% or more higher. About even: in between. Sales from the last three months are shown with the change so far and marked as not finished.</dd>
+      <dt>All-time return</dt><dd id="stake-note">—</dd>
+      <dt>News</dt><dd>Linked articles on each card. Their figures are the publishers', not mine.</dd>
+      <dt>Not advice</dt><dd>A personal record of my own trades, published as a portfolio project. Nothing here is a recommendation to buy or sell.</dd>
+    </dl>
+  </details>
+
+  <footer>Data and code: <a href="https://github.com/leducthinhbui/trading-review">github.com/leducthinhbui/trading-review</a></footer>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.9.0/d3.min.js"></script>
+<script>
+  const css = (name) => getComputedStyle(document.documentElement).getPropertyValue(name).trim();
+  const pct = (v, d = 1) => (v == null || isNaN(v) ? '—' : `${v > 0 ? '+' : v < 0 ? '−' : ''}${Math.abs(v).toFixed(d)}%`);
+  const money = (v) => `US$${d3.format(',.0f')(v)}`;
+  const parseDate = d3.utcParse('%Y-%m-%d');
+  const fmtDate = d3.utcFormat('%-d %b %Y');
+  const colorOf = (v) => ({ 'Good sell': css('--good'), 'Sold early': css('--early'), 'About even': css('--even') })[v];
+  const chipClass = { 'Good sell': 'good', 'Sold early': 'early', 'About even': 'even' };
+
+  function tipIn(el) {
+    const tip = document.createElement('div'); tip.className = 'tip'; tip.hidden = true; el.appendChild(tip);
+    return {
+      show(x, y, title, lines) {
+        tip.replaceChildren();
+        const b = document.createElement('b'); b.textContent = title; tip.appendChild(b);
+        lines.forEach((l) => { const d = document.createElement('div'); d.textContent = l; tip.appendChild(d); });
+        tip.hidden = false;
+        tip.style.left = `${Math.max(0, Math.min(x + 12, el.clientWidth - tip.offsetWidth))}px`;
+        tip.style.top = `${Math.max(0, y - tip.offsetHeight - 10)}px`;
+      },
+      hide() { tip.hidden = true; },
+    };
+  }
+
+  function drawScatter(sells) {
+    const el = document.getElementById('scatter'); el.replaceChildren();
+    const w = Math.max(300, el.clientWidth), h = 340, m = { t: 12, r: 12, b: 28, l: 48 };
+    const svg = d3.select(el).append('svg').attr('width', '100%').attr('viewBox', `0 0 ${w} ${h}`).attr('height', h);
+    const x = d3.scaleUtc(d3.extent(sells, (s) => s.dateObj), [m.l, w - m.r]).nice();
+    const lim = d3.max(sells, (s) => Math.abs(s.chg_3m_pct));
+    const y = d3.scaleLinear([-Math.min(lim, 60) - 5, Math.min(lim, 140) + 5], [h - m.b, m.t]).nice();
+    svg.append('g').attr('transform', `translate(${m.l},0)`).call(d3.axisLeft(y).ticks(6).tickFormat((v) => `${v > 0 ? '+' : ''}${v}%`).tickSize(-(w - m.l - m.r)))
+      .call((g) => { g.select('.domain').remove(); g.selectAll('.tick line').attr('stroke', css('--line')); g.attr('font-size', null).attr('font-family', null); });
+    svg.append('g').attr('transform', `translate(0,${h - m.b})`).call(d3.axisBottom(x).ticks(Math.max(3, Math.floor(w / 110))).tickSizeOuter(0))
+      .call((g) => { g.select('.domain').attr('stroke', css('--line')); g.selectAll('.tick line').attr('stroke', css('--line')); g.attr('font-size', null).attr('font-family', null); });
+    svg.append('line').attr('x1', m.l).attr('x2', w - m.r).attr('y1', y(0)).attr('y2', y(0)).attr('stroke', css('--ink')).attr('stroke-width', 1);
+    const tip = tipIn(el);
+    svg.append('g').selectAll('circle').data(sells).join('circle')
+      .attr('cx', (s) => x(s.dateObj)).attr('cy', (s) => y(Math.max(y.domain()[0], Math.min(y.domain()[1], s.chg_3m_pct))))
+      .attr('r', (s) => 4 + Math.sqrt(Math.abs(s.shares * s.sell_price)) / 18)
+      .attr('fill', (s) => (s.window_complete === 'yes' ? colorOf(s.verdict) : 'transparent'))
+      .attr('fill-opacity', 0.8)
+      .attr('stroke', (s) => (s.window_complete === 'yes' ? css('--panel') : colorOf(s.verdict)))
+      .attr('stroke-width', 2)
+      .on('pointerenter pointermove', (ev, s) => {
+        const [px, py] = d3.pointer(ev, el);
+        tip.show(px, py, `${s.name} (${s.code})`, [
+          `Sold ${fmtDate(s.dateObj)} at ${s.market === 'ASX' ? 'A$' : 'US$'}${s.sell_price}`,
+          `My profit ${pct(s.profit_pct)}`,
+          `${s.window_complete === 'yes' ? '3 months later' : 'Since then'}: ${pct(s.chg_3m_pct)} (market ${pct(s.market_3m_pct)})`,
+        ]);
+      })
+      .on('pointerleave', () => tip.hide());
+    const labels = sells.filter((s) => Math.abs(s.chg_3m_pct) >= 40);
+    svg.append('g').selectAll('text').data(labels).join('text').attr('class', 'strong')
+      .attr('x', (s) => x(s.dateObj) + 9).attr('y', (s) => y(Math.max(y.domain()[0], Math.min(y.domain()[1], s.chg_3m_pct)))).attr('dy', '0.35em').text((s) => s.code);
+  }
+
+  function hbars(elId, rows, fmt) {
+    const el = document.getElementById(elId); el.replaceChildren();
+    const w = Math.max(280, el.clientWidth), rowH = 34, h = rows.length * rowH + 4;
+    const svg = d3.select(el).append('svg').attr('width', '100%').attr('viewBox', `0 0 ${w} ${h}`).attr('height', h);
+    const probe = svg.append('text').attr('opacity', 0);
+    const left = d3.max(rows, (r) => { probe.text(r.label); return probe.node().getComputedTextLength(); }) + 10;
+    probe.remove();
+    const probe2 = svg.append('text').attr('opacity', 0);
+    const right = d3.max(rows, (r) => { probe2.text(fmt(r)); return probe2.node().getComputedTextLength(); }) + 12;
+    probe2.remove();
+    const x = d3.scaleLinear([0, d3.max(rows, (r) => r.value)], [left, Math.max(left + 40, w - right)]);
+    rows.forEach((r, i) => {
+      const cy = i * rowH + rowH / 2;
+      svg.append('text').attr('x', left - 8).attr('y', cy).attr('dy', '0.35em').attr('text-anchor', 'end').attr('class', 'strong').text(r.label);
+      svg.append('rect').attr('x', left).attr('y', cy - 9).attr('height', 18).attr('width', Math.max(2, x(r.value) - left)).attr('fill', r.color);
+      svg.append('text').attr('x', x(r.value) + 6).attr('y', cy).attr('dy', '0.35em').attr('class', 'strong').text(fmt(r));
+    });
+  }
+
+  let SALES = [], sortKey = 'date', sortDir = -1, filter = 'all';
+  function drawSales() {
+    const tb = document.querySelector('#sales-table tbody');
+    let rows = SALES.filter((s) => (filter === 'all' ? true : filter === 'partial' ? s.window_complete === 'no' : s.verdict === filter && s.window_complete === 'yes'));
+    rows = rows.slice().sort((a, b) => {
+      const key = sortKey === 'date' ? 'dateObj' : sortKey;
+      const av = a[key], bv = b[key];
+      return (typeof av === 'number' || av instanceof Date ? av - bv : String(av).localeCompare(String(bv))) * sortDir;
+    });
+    tb.replaceChildren(...rows.map((s) => {
+      const tr = document.createElement('tr');
+      const cell = (text, cls) => { const td = document.createElement('td'); td.textContent = text; if (cls) td.className = cls; return td; };
+      const verdict = document.createElement('td');
+      const chip = document.createElement('span'); chip.className = `chip ${chipClass[s.verdict]}`; chip.textContent = s.verdict; verdict.appendChild(chip);
+      if (s.window_complete === 'no') { const p = document.createElement('span'); p.className = 'partial'; p.textContent = 'so far'; verdict.appendChild(p); }
+      tr.append(
+        cell(fmtDate(s.dateObj)), cell(`${s.code} · ${s.name}`),
+        cell(`${s.market === 'ASX' ? 'A$' : '$'}${d3.format(',.2f')(s.sell_price)}`, 'num'),
+        cell(pct(s.profit_pct), `num ${s.profit_pct >= 0 ? 'pos' : 'neg'}`),
+        cell(String(s.held_days), 'num'),
+        cell(pct(s.chg_3m_pct), `num ${s.chg_3m_pct >= 0 ? 'neg' : 'pos'}`),
+        cell(pct(s.market_3m_pct), 'num'),
+        verdict,
+      );
+      return tr;
+    }));
+    document.querySelectorAll('#sales-table th button').forEach((b) => {
+      b.parentElement.setAttribute('aria-sort', b.dataset.sort === sortKey ? (sortDir > 0 ? 'ascending' : 'descending') : 'none');
+    });
+  }
+
+  Promise.all([
+    d3.csv('data/sells.csv', d3.autoType), d3.csv('data/holdings.csv', d3.autoType),
+    d3.csv('data/news.csv'), d3.json('data/summary.json'),
+  ]).then(([sells, holdings, news, s]) => {
+    sells.forEach((r) => { r.dateObj = parseDate(typeof r.date === 'string' ? r.date : d3.utcFormat('%Y-%m-%d')(r.date)); });
+    SALES = sells;
+    document.getElementById('asof').textContent = fmtDate(parseDate(s.as_of));
+    document.getElementById('t-first').textContent = d3.utcFormat('%b %Y')(parseDate(s.first_trade));
+    document.getElementById('t-trades').textContent = s.trades;
+    document.getElementById('t-stocks').textContent = s.stocks;
+    document.getElementById('t-stake').textContent = pct(s.stake_total_return_pct, 0);
+    document.getElementById('t-win').textContent = `${Math.round(s.profitable_sells_us / s.sells_us * 100)}%`;
+    document.getElementById('t-winn').textContent = `${s.profitable_sells_us} of ${s.sells_us}`;
+    document.getElementById('t-real').textContent = money(s.realised_us);
+    document.getElementById('stake-note').textContent = s.stake_note;
+    document.getElementById('v-after').textContent = pct(s.avg_3m_after_sell);
+    document.getElementById('v-market').textContent = pct(s.avg_market_3m);
+    document.getElementById('d-n').textContent = s.dip_buys;
+    document.getElementById('d-total').textContent = s.buys_complete;
+    document.getElementById('lede').textContent =
+      `I tested all ${s.sells} of my sales against what each stock did over the next three months. Of the ${s.sells_complete} with a full three months of data, ${s.good_sells} were good sells, ${s.sold_early} were sold early and ${s.about_even} were about even. My most recent exits, in August and September 2026, mostly came before a fall.`;
+
+    const draw = () => {
+      drawScatter(SALES);
+      hbars('verdicts', [
+        { label: 'Good sell', value: s.good_sells, color: css('--good') },
+        { label: 'Sold early', value: s.sold_early, color: css('--early') },
+        { label: 'About even', value: s.about_even, color: css('--even') },
+      ], (r) => `${r.value} sales`);
+      hbars('dips', [
+        { label: 'Bought after a drop', value: s.dip_buy_avg_3m, color: css('--accent'), win: s.dip_buy_win_rate },
+        { label: 'Other buys', value: s.other_buy_avg_3m, color: css('--muted'), win: s.other_buy_win_rate },
+        { label: 'Market, same windows', value: s.buy_market_avg_3m, color: css('--market') },
+      ], (r) => `${pct(r.value)}${r.win != null ? ` · up ${Math.round(r.win)}% of the time` : ''}`);
+    };
+    draw();
+    let t; window.addEventListener('resize', () => { clearTimeout(t); t = setTimeout(draw, 150); });
+    window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', draw);
+
+    drawSales();
+    document.querySelectorAll('.filters button').forEach((b) => b.addEventListener('click', () => {
+      filter = b.dataset.filter;
+      document.querySelectorAll('.filters button').forEach((x) => x.setAttribute('aria-pressed', String(x === b)));
+      drawSales();
+    }));
+    document.querySelectorAll('#sales-table th button').forEach((b) => b.addEventListener('click', () => {
+      if (sortKey === b.dataset.sort) sortDir *= -1; else { sortKey = b.dataset.sort; sortDir = b.dataset.sort === 'code' ? 1 : -1; }
+      drawSales();
+    }));
+
+    document.querySelector('#holdings-table tbody').replaceChildren(...holdings.map((h) => {
+      const tr = document.createElement('tr');
+      [[`${h.code} · ${h.name}`], [h.theme], [String(h.shares), 'num'], [`$${d3.format(',.2f')(h.avg_cost)}`, 'num'],
+       [`$${d3.format(',.2f')(h.last_close)}`, 'num'], [pct(h.return_pct), `num ${h.return_pct >= 0 ? 'pos' : 'neg'}`]]
+        .forEach(([text, cls]) => { const td = document.createElement('td'); td.textContent = text; if (cls) td.className = cls; tr.appendChild(td); });
+      return tr;
+    }));
+
+    document.getElementById('news-cards').replaceChildren(...news.map((n) => {
+      const a = document.createElement('article');
+      const meta = document.createElement('div'); meta.className = 'meta'; meta.textContent = `${fmtDate(parseDate(n.date))} · ${n.codes}`;
+      const p = document.createElement('p'); p.textContent = n.what_happened;
+      const mine = document.createElement('p'); mine.className = 'mine'; mine.textContent = n.my_trade;
+      const link = document.createElement('a'); link.href = n.url; link.target = '_blank'; link.rel = 'noopener'; link.textContent = `Source: ${n.source}`;
+      a.append(meta, p, mine, link);
+      return a;
+    }));
+  }).catch(() => { document.getElementById('lede').textContent = 'The data files could not be loaded. Open this page from its GitHub Pages address rather than as a local file.'; });
+</script>
+</body>
+</html>
